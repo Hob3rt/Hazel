@@ -1,7 +1,4 @@
-# Dirctories
-.vs/
-bin/
-bin-int/
 
-#FIles
-*.user
+.vs/
+
+bin-int/
