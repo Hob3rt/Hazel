@@ -1,7 +1,6 @@
 #pragma once
 #include "Event.h"
 
-#include <sstream>
 
 namespace Hazel
 {
@@ -31,5 +30,18 @@ namespace Hazel
 		EVENT_CLASS_TYPE(KeyPressed)
 	private:
 		int m_RepeatCount;
+	};
+
+	class HAZEL_API KeyReleasedEvent : public KeyEvent
+	{
+	public:
+		KeyReleasedEvent(int keycode, int repeatCount) : KeyEvent(keycode) {};
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyReleasedEvent: " << m_KeyCode ;
+			return ss.str();
+		}
+		EVENT_CLASS_TYPE(KeyReleased)
 	};
 }

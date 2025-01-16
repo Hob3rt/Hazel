@@ -1,8 +1,6 @@
 #pragma once
 #include "Hazel/Core.h"
 
-#include <string>
-#include <functional>
 
 namespace Hazel
 {
@@ -52,7 +50,9 @@ namespace Hazel
 		bool m_Handled = false;
 	};
 
-	class EventDispatcher
+
+
+	class EventDispatcher //调度事件
 	{
 		template<typename T>
 		using EventFn = std::function<bool(T&)>;
@@ -62,11 +62,16 @@ namespace Hazel
 		template<typename T>
 		bool Dispatch(EventFn<T> func)
 		{
-			if (m_Event.GetEventType() == T::GetStaticType))
+			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_Handled = func(*(T*)&m_Event);
-				return false;
+				T* derivedEvent = dynamic_cast<T*>(&m_Event);
+				if (derivedEvent) // 进行安全的类型转换检查
+				{
+					m_Event.m_Handled = func(*derivedEvent);
+					return true;
+				}
 			}
+			return false;
 		}
 
 	private:
