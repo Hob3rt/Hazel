@@ -12,5 +12,13 @@ namespace Hazel
 		s_CoreLogger->set_level(spdlog::level::trace);
 		s_ClientLogger = spdlog::stdout_color_mt("APP");
 		s_ClientLogger->set_level(spdlog::level::trace);
+		if (!s_CoreLogger)
+		{
+			std::cerr << "CoreLogger initialization failed!" << std::endl;
+		}
+		if (!s_ClientLogger)
+		{
+			std::cerr << "CoreLogger initialization failed!" << std::endl;
+		}
 	}
 }

@@ -35,7 +35,7 @@ namespace Hazel
 	class HAZEL_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
-		KeyReleasedEvent(int keycode, int repeatCount) : KeyEvent(keycode) {};
+		KeyReleasedEvent(int keycode) : KeyEvent(keycode) {};
 		std::string ToString() const override
 		{
 			std::stringstream ss;
