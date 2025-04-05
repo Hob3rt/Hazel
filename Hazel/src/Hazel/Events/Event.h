@@ -35,8 +35,10 @@ namespace Hazel
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override {return category;}
 	class HAZEL_API Event
 	{
-		friend class EventDispatcher;
+
 	public:
+		bool Handled = false;
+
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -47,8 +49,7 @@ namespace Hazel
 			return GetCategoryFlags() & category;
 		}
 
-	protected:
-		bool m_Handled = false;
+
 	};
 
 
@@ -68,7 +69,7 @@ namespace Hazel
 				T* derivedEvent = dynamic_cast<T*>(&m_Event);
 				if (derivedEvent) // 进行安全的类型转换检查
 				{
-					m_Event.m_Handled = func(*derivedEvent);
+					m_Event.Handled = func(*derivedEvent);
 					return true;
 				}
 			}
