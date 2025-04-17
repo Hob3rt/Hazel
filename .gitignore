@@ -4,3 +4,7 @@ bin-int/
 bin/
 
 .vs/
+
+Hazel/vendor/imgui
+
+Hazel/vendor/spdlog
